@@ -291,17 +291,17 @@ with left:
 with right:
     st.subheader("Tehospektritiheys (PSD) valitulle komponentille")
     fig = plt.figure(figsize=(10, 4))
-    plt.semilogy(f_psd, P_psd)
-    plt.xlim(0, 10)
-    plt.xlabel("Taajuus [Hz]")
-    plt.ylabel("Tehospektritiheys")
-    plt.title(f"PSD – {component}")
-    plt.tight_layout()
-    st.pyplot(fig, clear_figure=True)
+    P_plot = P_psd.copy()
 
-st.divider()
-st.subheader("Komponenttien vertailu (SNR-heuristiikka)")
-st.dataframe(snr_df, use_container_width=True)
+    plt.plot(f_psd, P_plot, linewidth=1.5)
+    plt.xlim(0, 14)
+    plt.xlabel("Taajuus [Hz]")
+    plt.ylabel("Teho")
+    plt.title("Tehospektri")
+    plt.grid(True, which="both", axis="both", alpha=0.3)
+    plt.tight_layout()
+
+st.pyplot(fig, clear_figure=True)
 
 st.divider()
 st.subheader("Reitti kartalla")
